@@ -10,32 +10,33 @@ export default function LandscapeBackground({ isDark }: LandscapeBackgroundProps
   return (
     <div
       className="fixed inset-0 pointer-events-none z-0 overflow-hidden transition-opacity duration-700"
-      style={{ opacity: isDark ? 0.22 : 0.38 }}
+      style={{ opacity: isDark ? 0.55 : 0.75 }}
       aria-hidden="true"
     >
       <svg
         className="w-full h-full"
         fill="none"
-        preserveAspectRatio="none"
+        preserveAspectRatio="xMidYMax slice"
         viewBox="0 0 1440 900"
         xmlns="http://www.w3.org/2000/svg"
       >
         {/* SKY CELESTIAL ELEMENTS */}
         {!isDark ? (
           <g id="sky-sun" className="transition-all duration-700">
-            {/* Bright golden sun */}
-            <circle cx="1260" cy="110" fill="#fef08a" opacity="0.65" r="48" />
-            <circle cx="1260" cy="110" fill="#fde047" opacity="0.8" r="32" />
+            {/* Bright golden sun with ambient glow */}
+            <circle cx="1260" cy="110" fill="#fef08a" opacity="0.45" r="72" />
+            <circle cx="1260" cy="110" fill="#fde047" opacity="0.7" r="44" />
+            <circle cx="1260" cy="110" fill="#eab308" opacity="0.9" r="28" />
             {/* Drifting Clouds */}
             <path
               d="M 180 80 Q 200 60, 230 65 Q 260 55, 290 75 Q 310 80, 310 95 L 180 95 Z"
               fill="#ffffff"
-              opacity="0.6"
+              opacity="0.85"
             />
             <path
               d="M 820 120 Q 840 100, 870 105 Q 900 95, 930 115 Q 950 120, 950 135 L 820 135 Z"
               fill="#ffffff"
-              opacity="0.45"
+              opacity="0.75"
             />
           </g>
         ) : (

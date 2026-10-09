@@ -17,6 +17,7 @@ import SimulationControlDrawer from '@/components/SimulationControlDrawer';
 import GuideModal from '@/components/GuideModal';
 import WeatherModal from '@/components/WeatherModal';
 import HardwareConfigModal from '@/components/HardwareConfigModal';
+import LandscapeBackground from '@/components/LandscapeBackground';
 
 import {
   HardwareState,
@@ -44,6 +45,15 @@ export default function VayalThozhanDashboard() {
   const [isDark, setIsDark] = useState(false);
   const [lang, setLang] = useState<Language>('ta');
   const [activeTab, setActiveTab] = useState<string>('overview');
+
+  // Synchronize dark class on document element
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDark]);
 
   // Interactive Modals & Drawers
   const [isIvrModalOpen, setIsIvrModalOpen] = useState(false);
@@ -821,7 +831,17 @@ export default function VayalThozhanDashboard() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[var(--bg-page)]">
+    <div
+      className={`relative min-h-screen ${isDark ? 'dark bg-[#0a1224]' : 'bg-[#edf2ed]'} transition-colors duration-500 overflow-x-hidden`}
+      style={{
+        background: isDark
+          ? 'linear-gradient(180deg, #0a1224 0%, #0e1e18 45%, #15281a 100%)'
+          : 'linear-gradient(180deg, #bfe3ff 0%, #e2f2e5 45%, #f1f9e4 100%)',
+      }}
+    >
+      {/* Animated Agricultural Landscape Background (Sun/Moon, Clouds, Hills, Barn, Palms) */}
+      <LandscapeBackground isDark={isDark} />
+
       {/* Main Responsive Dashboard Container (Max 980px, Centred, 14px outer padding) */}
       <div className="relative z-10 max-w-[980px] mx-auto px-[14px] py-4 min-h-screen flex flex-col justify-between">
         {/* Top Header */}
