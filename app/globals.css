@@ -1,26 +1,158 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg-page: #edf2ed;
+    --text-primary: #0f172a;
+    --text-muted: #334155;
+    --card-bg: #ffffff;
+    --card-border: #94a3b8;
+    
+    --primary-green: #15803d;
+    --primary-green-light: #dcfce7;
+    --primary-green-dark: #14532d;
+    
+    --secondary-orange: #c2410c;
+    --secondary-orange-light: #ffedd5;
+    --secondary-orange-dark: #7c2d12;
+    
+    --tertiary-blue: #0284c7;
+    --tertiary-blue-light: #e0f2fe;
+    
+    --soil-tan: #efe6d5;
+    --soil-border: #b8a383;
+  }
+
+  .dark {
+    --bg-page: #09100b;
+    --text-primary: #f8fafc;
+    --text-muted: #cbd5e1;
+    --card-bg: #111c14;
+    --card-border: #27402d;
+    
+    --primary-green: #22c55e;
+    --primary-green-light: #142e1b;
+    --primary-green-dark: #4ade80;
+    
+    --secondary-orange: #fb923c;
+    --secondary-orange-light: #351a0d;
+    --secondary-orange-dark: #fdba74;
+    
+    --tertiary-blue: #38bdf8;
+    --tertiary-blue-light: #082f49;
+    
+    --soil-tan: #231c15;
+    --soil-border: #4a3b2b;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  color: var(--text-primary);
+  background-color: var(--bg-page);
+  font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Solid Professional Enterprise Cards (100% Opaque, Thick Borders) */
+.vayal-card {
+  background-color: var(--card-bg);
+  border: 2px solid var(--card-border);
+  box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.dark .vayal-card {
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.7);
+  border-color: #27402d;
+}
+
+.vayal-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -2px rgba(25, 35, 25, 0.12);
+}
+
+/* Keyframe animations */
+@keyframes swayHoe {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-5deg); }
+}
+
+.animate-hoe {
+  transform-origin: 85% 70%;
+  animation: swayHoe 4s ease-in-out infinite;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 32s linear infinite;
+}
+
+@keyframes waterSpray {
+  0% { opacity: 0; transform: translateY(-4px) scale(0.7); }
+  40% { opacity: 0.95; }
+  100% { opacity: 0; transform: translateY(14px) scale(1.15); }
+}
+
+.spray-dot {
+  animation: waterSpray 1.4s ease-in-out infinite;
+}
+.spray-dot:nth-child(2) { animation-delay: 0.35s; }
+.spray-dot:nth-child(3) { animation-delay: 0.7s; }
+.spray-dot:nth-child(4) { animation-delay: 1.05s; }
+
+@keyframes waveMotion {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-25%); }
+  100% { transform: translateX(0); }
+}
+
+.tank-wave {
+  animation: waveMotion 5s ease-in-out infinite;
+}
+
+@keyframes dryPulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 83, 80, 0.45); }
+  50% { box-shadow: 0 0 0 10px rgba(239, 83, 80, 0); }
+}
+
+.pulse-dry {
+  animation: dryPulseGlow 2.2s infinite;
+}
+
+@keyframes pipeFlow {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 0; }
+}
+
+.animate-pipe-flow {
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.15) 0px,
+    rgba(255, 255, 255, 0.15) 12px,
+    transparent 12px,
+    transparent 24px
+  );
+  background-size: 48px 100%;
+  animation: pipeFlow 1.2s linear infinite;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.3);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.5);
 }
