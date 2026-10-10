@@ -53,3 +53,12 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 🌐 Live GitHub Pages Deployment
 This repository is configured with automated GitHub Actions CI/CD. Pushes to `main` automatically build and deploy the application to GitHub Pages.
+
+To enable it for the repository:
+
+1. Open **Settings → Pages** on GitHub.
+2. Set **Source** to **GitHub Actions**.
+3. Push to `main` and open the URL shown in the workflow's `github-pages` environment.
+
+For this repository, the project-site URL is:
+`https://mithunsabari07.github.io/vayal-thozhan/`
